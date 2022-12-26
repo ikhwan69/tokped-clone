@@ -17,7 +17,7 @@ module.exports = {
         }
       },
       backgroundImage: {
-        'hero': "url('https://i.ibb.co/D8NN1nY/bg-login.png')",
+        'hero-login': "url('https://i.ibb.co/D8NN1nY/bg-login.png')",
       }
     },
   },

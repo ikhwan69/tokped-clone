@@ -12,3 +12,7 @@
     color: #03AC0E;
     cursor: pointer;
 }
+
+.button_custom{
+    @apply w-full border py-2 flex justify-center gap-2;
+   }
