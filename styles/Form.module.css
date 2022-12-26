@@ -5,7 +5,7 @@
 
 .input_text{
     @apply block w-full px-2 py-2  bg-white border rounded-md;
-    @apply focus:border-green focus:outline-none transition-colors duration-200 transform border-none;
+    @apply focus:border-green focus:outline-none transition-colors duration-200 transform;
 }
 
 .input_text:not([type=email]) ~ span:hover *{
