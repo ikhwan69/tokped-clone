@@ -12,7 +12,7 @@ export default function Login() {
 
     //Google Handler function
     async function handleGoogleSignin() {
-        signIn('google', {callbackUrl: process.env.URL_CALLBACK})
+        signIn('google', {callbackUrl: process.env.NEXT_PUBLIC_URL_CALLBACK})
     }
 
     return (
