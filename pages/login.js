@@ -2,12 +2,10 @@ import { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Layout from "../layout/layout";
-import { HiAtSymbol, HiFingerPrint } from 'react-icons/hi'
 import {AiFillEye, AiFillMail} from 'react-icons/ai'
 import styles from '../styles/Form.module.css';
 
 export default function Login() {
-
     const [show, setShow] = useState(false)
 
     return (
@@ -67,7 +65,6 @@ export default function Login() {
                     </form>
                 </div>
             </div>
-
         </Layout>
     );
 }

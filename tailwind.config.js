@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        'custom': "0 0 16px rgb(235, 235, 235)"
+      },
       colors: {
         green: {
           DEFAULT: '#03AC0E',
@@ -14,9 +17,12 @@ module.exports = {
         }
       },
       backgroundImage: {
-        'hero' : "url('https://i.ibb.co/D8NN1nY/bg-login.png')",
+        'hero': "url('https://i.ibb.co/D8NN1nY/bg-login.png')",
       }
     },
   },
   plugins: [],
 }
+
+
+
