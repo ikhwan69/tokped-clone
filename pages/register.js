@@ -2,17 +2,40 @@ import { useState } from 'react'
 import trees from '../public/assets/register_new.png'
 import Image from 'next/image'
 import { AiFillEye, AiFillMail } from 'react-icons/ai'
+import { FaUserAlt } from 'react-icons/fa'
 import styles from '../styles/Form.module.css';
 import Link from 'next/link';
+import { useFormik } from 'formik'
+import { registerValidate } from '../lib/validate'
 
 export default function Register() {
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState({ password: false, cpassword: false })
+
+    const formik = useFormik({
+        initialValues: {
+            namaLengkap: '',
+            email: '',
+            password: '',
+            cpassword: ''
+        },
+        validate: registerValidate,
+        onSubmit
+    });
+
+    async function onSubmit(values) {
+        console.log(values)
+    }
+
+    const namaLengkapValidate = `${formik.errors.namaLengkap && formik.touched.namaLengkap ? "border-2 border-rose-600 focus:border-rose-600" : ""}`
+    const emailValidate = `${formik.errors.email && formik.touched.email ? "border-2 border-rose-600 focus:border-rose-600" : ""}`
+    const passwordValidate = `${formik.errors.password && formik.touched.password ? "border-2 border-rose-600 focus:border-rose-600" : ""}`
+    const cpasswordValidate = `${formik.errors.cpassword && formik.touched.cpassword ? "border-2 border-rose-600 focus:border-rose-600" : ""}`
 
     return (
         <div className='w-full h-screen flex'>
             <div className='grid grid-cols-1 gap-8 md:grid-cols-2 m-auto  sm:max-w-[900px]'>
                 <div className='w-full flex align-center hidden md:block'>
-                    <Image                 
+                    <Image
                         src={trees}
                         alt="/"
                     />
@@ -27,60 +50,87 @@ export default function Register() {
                             </span>
                         </p>
                     </div>
-                    <form className="flex flex-col gap-3 my-8 px-10">
+                    <form onSubmit={formik.handleSubmit} className="flex flex-col gap-3 my-8 px-10">
                         <label
-                            htmlFor="email"
+                            htmlFor="nama"
                             className="block text-sm font-normal  text-gray-500"
                         >
                             Nama Lengkap
                         </label>
-                        <div className={styles.input_group}>
+                        <div className={` ${styles.input_group} ${namaLengkapValidate}`}>
                             <input
                                 type="text"
                                 name='nama'
                                 className={styles.input_text}
+                                {...formik.getFieldProps('namaLengkap')}
                             />
                             <span className='icon flex items-center px-4'>
-                                <AiFillMail className="text-slate-400" size={15} />
+                                <FaUserAlt className="text-slate-400" size={15} />
                             </span>
                         </div>
+                        {namaLengkapValidate && <span className='text-sm text-rose-500'>{formik.errors.namaLengkap}</span>}
                         <label
                             htmlFor="email"
                             className="block text-sm font-normal  text-gray-500"
                         >
                             Email
                         </label>
-                        <div className={styles.input_group}>
+                        <div className={`${styles.input_group} ${emailValidate}`}>
                             <input
                                 type="email"
                                 name='email'
                                 className={styles.input_text}
+                                {...formik.getFieldProps('email')}
                             />
                             <span className='icon flex items-center px-4'>
                                 <AiFillMail className="text-slate-400" size={15} />
                             </span>
                         </div>
+                        {emailValidate && <span className='text-sm text-rose-500'>{formik.errors.email}</span>}
                         <label
                             htmlFor="password"
                             className="block text-sm font-normal text-gray-500"
                         >
                             Password
                         </label>
-                        <div className={styles.input_group}>
+                        <div className={` ${styles.input_group} ${passwordValidate}`}>
                             <input
-                                type={`${show ? 'text' : 'password'}`}
+                                type={`${show.password ? 'text' : 'password'}`}
                                 name='password'
                                 className={styles.input_text}
+                                {...formik.getFieldProps('password')}
                             />
                             <span
                                 className="icon flex items-center px-4"
-                                onClick={() => setShow(!show)}
+                                onClick={() => setShow({ ...show, password: !show.password })}
                             >
                                 <AiFillEye className="text-slate-400" size={15} />
                             </span>
                         </div>
+                        {passwordValidate && <span className='text-sm text-rose-500'>{formik.errors.password}</span>}
+                        <label
+                            htmlFor="password"
+                            className="block text-sm font-normal text-gray-500"
+                        >
+                            Confirm Password
+                        </label>
+                        <div className={`${styles.input_group} ${cpasswordValidate}`}>
+                            <input
+                                type={`${show.cpassword ? 'text' : 'password'}`}
+                                name='cpassword'
+                                className={styles.input_text}
+                                {...formik.getFieldProps('cpassword')}
+                            />
+                            <span
+                                className="icon flex items-center px-4"
+                                onClick={() => setShow({ ...show, cpassword: !show.cpassword })}
+                            >
+                                <AiFillEye className="text-slate-400" size={15} />
+                            </span>
+                        </div>
+                        {cpasswordValidate && <span className='text-sm text-rose-500'>{formik.errors.cpassword}</span>}
                         <div className="mt-6">
-                            <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-green rounded-md hover:bg-green-200 focus:outline-none ">
+                            <button type="submit" className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-green rounded-md hover:bg-green-200 focus:outline-none ">
                                 Daftar
                             </button>
                         </div>
