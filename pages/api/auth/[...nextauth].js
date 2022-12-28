@@ -1,5 +1,5 @@
 import NextAuth from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google'
+// import GoogleProvider from 'next-auth/providers/google'
 import  CredentialsProvider  from 'next-auth/providers/credentials';
 import connectMongo from '../../../database/conn'
 import Users from '../../../model/Schema'
@@ -8,11 +8,11 @@ import { compare } from 'bcryptjs';
 export default NextAuth({
     providers: [
         //Google Provider
-        GoogleProvider({
-            clientId: process.env.GOOGLE_ID,
-            clientSecret: process.env.GOOGLE_SECRET
+        // GoogleProvider({
+        //     clientId: process.env.GOOGLE_ID,
+        //     clientSecret: process.env.GOOGLE_SECRET
 
-        }),
+        // }),
         CredentialsProvider({
             name: "Credentials",
             async authorize(credentials, req) {

@@ -35,9 +35,9 @@ export default function Login() {
     }
 
     //Google Handler function
-    async function handleGoogleSignin() {
-        signIn('google', { callbackUrl: process.env.NEXT_PUBLIC_URL_CALLBACK })
-    }
+    // async function handleGoogleSignin() {
+    //     signIn('google', { callbackUrl: process.env.NEXT_PUBLIC_URL_CALLBACK })
+    // }
 
     const emailValidate = `${formik.errors.email && formik.touched.email ? 'border-2 border-rose-600 focus:border-rose-600' : ''}`
     const passwordValidate = `${formik.errors.password && formik.touched.password ? 'border-2 border-rose-600 focus:border-rose-600' : ''}`
@@ -100,7 +100,7 @@ export default function Login() {
                                 Masuk
                             </button>
                         </div>
-                        <p className="text-sm text-center text-slate-400 my-2">---------- atau masuk dengan ----------</p>
+                        {/* <p className="text-sm text-center text-slate-400 my-2">---------- atau masuk dengan ----------</p>
                         <div className="input-button ">
                             <button type="button" onClick={handleGoogleSignin} className={styles.button_custom}>
                                 <Image
@@ -110,7 +110,7 @@ export default function Login() {
                                 />
                                 <span className="font-semibold">Google</span>
                             </button>
-                        </div>
+                        </div> */}
                     </form>
                 </div>
             </div>
