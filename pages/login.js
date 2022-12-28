@@ -4,8 +4,8 @@ import Link from "next/link";
 import Layout from "../layout/layout";
 import { AiFillEye, AiFillMail } from 'react-icons/ai'
 import styles from '../styles/Form.module.css';
-import { signIn } from 'next-auth/react'
-import Image from "next/image";
+import { signIn, getSession } from 'next-auth/react'
+// import Image from "next/image";
 import { useFormik } from "formik";
 import login_validate from "../lib/validate";
 import { useRouter } from 'next/router'
@@ -30,7 +30,7 @@ export default function Login() {
             password: values.password,
             callbackUrl: "/dashboard"
         })
-        // console.log(status)
+        console.log(status)
         if (status.ok) router.push(status.url)
     }
 
@@ -48,7 +48,7 @@ export default function Login() {
                 <title>Login</title>
             </Head>
             <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
-                <div className="w-full pt-10 px-8 m-auto bg-white  rounded-xl shadow-md lg:max-w-[30%]">
+                <div className="w-full py-6 px-8 md:px-10 m-auto bg-white rounded-xl shadow-md lg:max-w-[30%]">
                     <div className="flex justify-between mt-5">
                         <h1 className="text-3xl font-bold tracking-tight">Masuk</h1>
                         <Link href="/register">
@@ -107,6 +107,7 @@ export default function Login() {
                                     src={`/assets/google.svg`}
                                     width={20}
                                     height={20}
+                                    alt="image"
                                 />
                                 <span className="font-semibold">Google</span>
                             </button>
@@ -117,3 +118,21 @@ export default function Login() {
         </Layout>
     );
 }
+
+
+export async function getServerSideProps({ req }){
+    const session = await getSession({ req })
+  
+    if(session){
+      return {
+        redirect : {
+          destination: '/dashboard',
+          permanent: false
+        }
+      }
+    }
+  
+    return {
+      props: { session }
+    }
+  }
