@@ -28,7 +28,7 @@ export default function Login() {
             redirect: false,
             email: values.email,
             password: values.password,
-            callbackUrl: "/"
+            callbackUrl: "/dashboard"
         })
         // console.log(status)
         if (status.ok) router.push(status.url)
