@@ -35,7 +35,7 @@ function Guest() {
 function User({ session, handleSignOut }) {
   return (
     <main className="container py-20 mx-auto text-center">
-      <h3 className='text-4xl font-bold'>Authorize User Homepage</h3>
+      <h3 className='text-4xl font-bold'>Admin Dashboard </h3>
 
       <div className='details'>
         <h5>{session.user.name}</h5>

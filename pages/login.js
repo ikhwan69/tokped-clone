@@ -8,9 +8,12 @@ import { signIn } from 'next-auth/react'
 import Image from "next/image";
 import { useFormik } from "formik";
 import login_validate from "../lib/validate";
+import { useRouter } from 'next/router'
 
 export default function Login() {
     const [show, setShow] = useState(false)
+    const router = useRouter()
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -21,18 +24,23 @@ export default function Login() {
     })
 
     async function onSubmit(values) {
-        console.log(values)
+        const status = await signIn('credentials', {
+            redirect: false,
+            email: values.email,
+            password: values.password,
+            callbackUrl: "/"
+        })
+        // console.log(status)
+        if (status.ok) router.push(status.url)
     }
 
     //Google Handler function
     async function handleGoogleSignin() {
-        signIn('google', { callbackUrl: process.env.NEXTAUTH_URL})
+        signIn('google', { callbackUrl: process.env.NEXT_PUBLIC_URL_CALLBACK })
     }
 
-    const emailValidate = `${formik.errors.email  && formik.touched.email  ? 'border-2 border-rose-600 focus:border-rose-600' : ''}`
-
-    const passwordValidate = `${formik.errors.password  && formik.touched.password ? 'border-2 border-rose-600 focus:border-rose-600' : ''}`
-   
+    const emailValidate = `${formik.errors.email && formik.touched.email ? 'border-2 border-rose-600 focus:border-rose-600' : ''}`
+    const passwordValidate = `${formik.errors.password && formik.touched.password ? 'border-2 border-rose-600 focus:border-rose-600' : ''}`
 
     return (
         <Layout>
@@ -65,7 +73,7 @@ export default function Login() {
                                 <AiFillMail className="text-slate-400" size={15} />
                             </span>
                         </div>
-                         {emailValidate && <span className='text-sm text-rose-500'>{formik.errors.email}</span>}
+                        {emailValidate && <span className='text-sm text-rose-500'>{formik.errors.email}</span>}
                         <label
                             htmlFor="password"
                             className="block text-sm font-semibold text-gray-500"
