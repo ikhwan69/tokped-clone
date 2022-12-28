@@ -26,7 +26,7 @@ export default function Login() {
 
     //Google Handler function
     async function handleGoogleSignin() {
-        signIn('google', { callbackUrl: process.env.NEXT_PUBLIC_URL_CALLBACK })
+        signIn('google', { callbackUrl: process.env.NEXTAUTH_URL})
     }
 
     const emailValidate = `${formik.errors.email  && formik.touched.email  ? 'border-2 border-rose-600 focus:border-rose-600' : ''}`

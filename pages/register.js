@@ -33,10 +33,11 @@ export default function Register() {
 
     return (
         <div className='w-full h-screen flex'>
-            <div className='grid grid-cols-1 gap-8 md:grid-cols-2 m-auto  sm:max-w-[900px]'>
-                <div className='w-full flex align-center hidden md:block'>
+            <div className='  grid grid-cols-1 gap-20 md:grid-cols-2 m-auto  sm:max-w-[950px]'>
+                <div className=' hidden md:block'>
                     <Image
                         src={trees}
+                        className="mt-24"
                         alt="/"
                     />
                 </div>
@@ -46,7 +47,7 @@ export default function Register() {
                         <p className="font-light  text-slate-500">
                             Sudah punya akun Tokopedia? &nbsp;
                             <span className='cursor-pointer text-[#03AC0E]'>
-                                <Link href="/register">Masuk</Link>
+                                <Link href="/login">Masuk</Link>
                             </span>
                         </p>
                     </div>
