@@ -1,12 +1,27 @@
-import { Schema, model, models } from "mongoose";
+import mongoose from "mongoose";
+
+const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    namaLengkap: String,
-    email: String,
-    password: String,
+    name: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    hashedPassword: {
+        type: String,
+        required: true,
+        minLength: 8,
+    },
+    // image: {
+    //     type: String,
+    // }
 })
 
-// Jika model sudah ada maka gunakan pernyataan pertama : models.user jika tidak, buatkan model baru
-const Users = models.user || model('user', userSchema);
-
-export default Users;
+const User= mongoose.models.User|| mongoose.model("User", userSchema);
+export default User;

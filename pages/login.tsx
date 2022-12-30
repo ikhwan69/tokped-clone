@@ -4,17 +4,19 @@ import Link from "next/link";
 import Layout from "../layout/layout";
 import { AiFillEye, AiFillMail } from 'react-icons/ai'
 import styles from '../styles/Form.module.css';
-import { signIn, getSession } from 'next-auth/react'
-// import Image from "next/image";
-import { useFormik } from "formik";
+import { signIn, getSession, getProviders } from 'next-auth/react'
+import Image from "next/image";
+import { useFormik, FormikProps } from "formik";
 import login_validate from "../lib/validate";
 import { useRouter } from 'next/router'
 
-export default function Login() {
+import { FormLogin } from "../type";
+
+export default function Login({ providers }: any) {
     const [show, setShow] = useState(false)
     const router = useRouter()
 
-    const formik = useFormik({
+    const formik: FormikProps<FormLogin> = useFormik({
         initialValues: {
             email: '',
             password: ''
@@ -34,10 +36,34 @@ export default function Login() {
         if (status.ok) router.push(status.url)
     }
 
-    //Google Handler function
-    // async function handleGoogleSignin() {
-    //     signIn('google', { callbackUrl: process.env.NEXT_PUBLIC_URL_CALLBACK })
-    // }
+    //Providers button
+    const ProvidersButton = ({ providers }: any) => (
+        <div className="grid gap-3 grid-columns">
+            {Object.values(providers).map(
+                (provider: any) =>
+                    provider.name !== "Credentials" && (
+                        <button
+                            type="button"
+                            key={provider.name}
+                            className={styles.button_custom}
+                            onClick={() => {
+                                signIn(provider.id, {
+                                    callbackUrl: `${process.env.NEXT_PUBLIC_URL_CALLBACK}`
+                                })
+                            }}
+                        >
+                            <Image
+                                src={`${provider.name === "Google" ? '/assets/google.svg' : '/assets/github.svg'}`}
+                                width={20}
+                                height={20}
+                                alt="image"
+                            />
+                            <span className="font-semibold">{provider.name}</span>
+                        </button>
+                    )
+            )}
+        </div>
+    )
 
     const emailValidate = `${formik.errors.email && formik.touched.email ? 'border-2 border-rose-600 focus:border-rose-600' : ''}`
     const passwordValidate = `${formik.errors.password && formik.touched.password ? 'border-2 border-rose-600 focus:border-rose-600' : ''}`
@@ -69,7 +95,7 @@ export default function Login() {
                                 className={styles.input_text}
                                 {...formik.getFieldProps('email')}
                             />
-                            <span className='icon flex items-center px-4'>
+                            <span className='flex items-center px-4 icon'>
                                 <AiFillMail className="text-slate-400" size={15} />
                             </span>
                         </div>
@@ -88,7 +114,7 @@ export default function Login() {
                                 {...formik.getFieldProps('password')}
                             />
                             <span
-                                className="icon flex items-center px-4"
+                                className="flex items-center px-4 icon"
                                 onClick={() => setShow(!show)}
                             >
                                 <AiFillEye className="text-slate-400" size={15} />
@@ -96,22 +122,12 @@ export default function Login() {
                         </div>
                         {passwordValidate && <span className='text-sm text-rose-500'>{formik.errors.password}</span>}
                         <div className="mt-6">
-                            <button type="submit" className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-green rounded-md hover:bg-green-200 focus:outline-none ">
+                            <button type="submit" className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform rounded-md bg-green hover:bg-green-200 focus:outline-none ">
                                 Masuk
                             </button>
                         </div>
-                        {/* <p className="text-sm text-center text-slate-400 my-2">---------- atau masuk dengan ----------</p>
-                        <div className="input-button ">
-                            <button type="button" onClick={handleGoogleSignin} className={styles.button_custom}>
-                                <Image
-                                    src={`/assets/google.svg`}
-                                    width={20}
-                                    height={20}
-                                    alt="image"
-                                />
-                                <span className="font-semibold">Google</span>
-                            </button>
-                        </div> */}
+                        <p className="my-2 text-sm text-center text-slate-400">---------- atau masuk dengan ----------</p>
+                        <ProvidersButton providers={providers} />
                     </form>
                 </div>
             </div>
@@ -120,19 +136,30 @@ export default function Login() {
 }
 
 
-export async function getServerSideProps({ req }){
+export async function getServerSideProps({ req }) {
     const session = await getSession({ req })
-  
-    if(session){
-      return {
-        redirect : {
-          destination: '/dashboard',
-          permanent: false
+
+    if (session) {
+        return {
+            redirect: {
+                destination: '/dashboard',
+                permanent: false
+            }
         }
-      }
     }
-  
+
     return {
-      props: { session }
+        props: {
+            session,
+            providers: await getProviders()
+        }
     }
-  }
+}
+
+//   export async function getServerSideProps() {
+//     return {
+//         props: {
+//             providers: await getProviders()
+//         }
+//     }
+//   }
