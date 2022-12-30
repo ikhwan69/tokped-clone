@@ -1,5 +1,8 @@
+import { FormRegister } from '../type'
+import {FormikErrors} from 'formik'
+
 export default function login_validate(values) {
-    const errors = {};
+    const errors : FormikErrors<FormRegister> = {};
 
     if(!values.email) {
         errors.email = 'Required';
@@ -20,7 +23,7 @@ export default function login_validate(values) {
 }
 
 export function registerValidate(values){
-    const errors = {};
+    const errors : FormikErrors<FormRegister>  = {};
 
     if(!values.namaLengkap){
         errors.namaLengkap = "Required";
