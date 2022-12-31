@@ -147,7 +147,6 @@ export async function getServerSideProps({ req }) {
             }
         }
     }
-
     return {
         props: {
             session,
@@ -155,11 +154,3 @@ export async function getServerSideProps({ req }) {
         }
     }
 }
-
-//   export async function getServerSideProps() {
-//     return {
-//         props: {
-//             providers: await getProviders()
-//         }
-//     }
-//   }

@@ -1,8 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../database/dbConnect";
-import User from "../../../model/Schema";
-import bcrypt from "bcryptjs";
+import User from "../../../model/User";
+import bcrypt from "bcrypt";
 
 interface ResponseData {
   error?: string;
@@ -14,9 +14,12 @@ const validateEmail = (email: string): boolean => {
   return regEx.test(email);
 };
 
-const validateForm = async (namaLengkap: string, email: string, password: string) => {
-
-  if (namaLengkap.length < 3) {
+const validateForm = async (
+  username: string,
+  email: string,
+  password: string
+) => {
+  if (username.length < 3) {
     return { error: "Username must have 3 or more characters" };
   }
   if (!validateEmail(email)) {
@@ -24,17 +27,17 @@ const validateForm = async (namaLengkap: string, email: string, password: string
   }
 
   await dbConnect();
-  // const emailUser = await User.findOne?({ email: email })
+  const emailUser = await User.findOne({ email: email });
 
-  // if (emailUser) {
-  //   return { error: "Email already exists" }
-  // }
+  if (emailUser) {
+    return { error: "Email already exists" };
+  }
 
-  // if (password.length < 5) {
-  //   return { error: "Password must have 5 or more characters" }
-  // }
+  if (password.length < 5) {
+    return { error: "Password must have 5 or more characters" };
+  }
 
-  // return null;
+  return null;
 };
 
 export default async function handler(
@@ -60,18 +63,18 @@ export default async function handler(
   const hashedPassword = await bcrypt.hash(password, 12);
 
   // create new User on MongoDB
-  // const newUser = new User({
-  //   namaLengkap,
-  //   email,
-  //   hashedPassword,
-  // });
+  const newUser = new User({
+    name: username,
+    email,
+    hashedPassword,
+  });
 
-  // newUser
-  //   .save()
-  //   .then(() =>
-  //     res.status(200).json({ msg: "Successfuly created new User: " + newUser })
-  //   )
-  //   .catch((err: string) =>
-  //     res.status(400).json({ error: "Error on '/api/register': " + err })
-  //   );
+  newUser
+    .save()
+    .then(() =>
+      res.status(200).json({ msg: "Successfuly created new User: " + newUser })
+    )
+    .catch((err: string) =>
+      res.status(400).json({ error: "Error on '/api/register': " + err })
+    );
 }

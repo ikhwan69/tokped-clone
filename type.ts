@@ -7,5 +7,5 @@ export interface FormRegister {
     namaLengkap: string;
     email: string;
     password: string;
-    cpassword: string;
+    cpassword?: string;
 }
