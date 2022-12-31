@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { FormRegister } from "../type";
 
 const Schema = mongoose.Schema;
 
@@ -23,5 +24,5 @@ const userSchema = new Schema({
     // }
 })
 
-const User= mongoose.models.User|| mongoose.model("User", userSchema);
+const User= mongoose.models.User<FormRegister>|| mongoose.model("User", userSchema);
 export default User;
