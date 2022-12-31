@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  name: {
+  namaLengkap: {
     type: String,
     requeired: true,
     unique: true,

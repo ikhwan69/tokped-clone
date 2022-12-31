@@ -64,7 +64,7 @@ export default async function handler(
 
   // create new User on MongoDB
   const newUser = new User({
-    name: username,
+    namaLengkap: username,
     email,
     hashedPassword,
   });
