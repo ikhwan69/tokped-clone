@@ -2,7 +2,10 @@ import React from 'react'
 
 function profil() {
   return (
-    <div>profil</div>
+    <main>
+      <div>profil</div>
+      <h2>ikhwanul rahman</h2>
+    </main>
   )
 }
 
