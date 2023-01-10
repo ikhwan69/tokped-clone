@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import {getSession} from 'next-auth/react'
+import {NextApiRequest} from "next"
 
 export default function Dashboard() {
     return(
@@ -10,7 +11,7 @@ export default function Dashboard() {
     )
 }
 
-export async function getServerSideProps({req}){
+export async function getServerSideProps({req} : {req : NextApiRequest}){
     const session = await getSession({req})
     if(!session) {
         return {

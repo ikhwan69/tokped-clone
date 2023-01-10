@@ -1,10 +1,11 @@
 .input_group {
     @apply flex border rounded-xl;
     position: relative;
+
 }
 
 .input_text{
-    @apply block w-full px-2 py-2  bg-white ;
+    @apply block w-full px-2 md:py-2 py-1 bg-white ;
     @apply focus:border-green focus:outline-none transition-colors duration-200 transform border rounded-md;
 }
 
@@ -14,5 +15,5 @@
 }
 
 .button_custom{
-    @apply w-full border py-2 flex justify-center gap-2;
+    @apply w-full border rounded-md py-2 flex justify-center gap-2;
    }

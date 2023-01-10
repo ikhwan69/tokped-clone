@@ -15,12 +15,12 @@ const validateEmail = (email: string): boolean => {
 };
 
 const validateForm = async (
-  username: string,
+  namaLengkap: string,
   email: string,
   password: string
 ) => {
-  if (username.length < 3) {
-    return { error: "Username must have 3 or more characters" };
+  if (namaLengkap.length < 3) {
+    return { error: "Full Name must have 3 or more characters" };
   }
   if (!validateEmail(email)) {
     return { error: "Email is invalid" };
@@ -30,7 +30,7 @@ const validateForm = async (
   const emailUser = await User.findOne({ email: email });
 
   if (emailUser) {
-    return { error: "Email already exists" };
+    return { error: "Email sudah terdaftar" };
   }
 
   if (password.length < 5) {
@@ -52,9 +52,9 @@ export default async function handler(
   }
 
   // get and validate body variables
-  const { username, email, password } = req.body;
+  const { namaLengkap, email, password } = req.body;
 
-  const errorMessage = await validateForm(username, email, password);
+  const errorMessage = await validateForm(namaLengkap, email, password);
   if (errorMessage) {
     return res.status(400).json(errorMessage as ResponseData);
   }
@@ -64,7 +64,7 @@ export default async function handler(
 
   // create new User on MongoDB
   const newUser = new User({
-    namaLengkap: username,
+    namaLengkap: namaLengkap,
     email,
     hashedPassword,
   });

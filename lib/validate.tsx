@@ -1,13 +1,13 @@
 import { FormRegister } from '../type'
 import {FormikErrors} from 'formik'
 
-export default function login_validate(values) {
+export default function login_validate(values : any) {
     const errors : FormikErrors<FormRegister> = {};
 
     if(!values.email) {
-        errors.email = 'Required';
+        errors.email = 'Email harus diisi';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address';
+        errors.email = 'Format email salah';
     }
 
       // validation for password
@@ -22,7 +22,7 @@ export default function login_validate(values) {
     return errors;
 }
 
-export function registerValidate(values){
+export function registerValidate(values : any){
     const errors : FormikErrors<FormRegister>  = {};
 
     if(!values.namaLengkap){
@@ -32,9 +32,9 @@ export function registerValidate(values){
     }
 
     if (!values.email) {
-        errors.email = 'Required';
+        errors.email = 'Email harus diisi';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address';
+        errors.email = 'Format email salah';
     }
 
        // validation for password
