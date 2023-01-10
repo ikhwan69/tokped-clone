@@ -149,9 +149,7 @@ export default function Login({ providers }: any) {
               </span>
             )}
             <div className="mt-6">
-              <Button size="sm" textColor="white" bgColor="blue-500">
-                Masuk
-              </Button>
+           <Button variant="regular" size="regular">Masuk</Button>
             </div>
             <p className="my-2 text-sm text-center text-slate-400">
               ---------- atau masuk dengan ----------

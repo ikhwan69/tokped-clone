@@ -187,9 +187,7 @@ export default function Register() {
                             </span>
                         )}
                         <div className="mt-6">
-                            <Button size="sm" textColor="white" bgColor="blue-500">
-                                <span>{isLoading ? 'Loading...' : 'Daftar'} </span>
-                            </Button>
+                        <Button variant="regular" size="regular">Masuk</Button>
                         </div>
                     </form>
                 </div>

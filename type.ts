@@ -18,10 +18,3 @@ export interface IDropdownProfile {
     name: string;
     href: string;
 }
-
-export interface IProperties {
-    size : string;
-    bgColor: string;
-    textColor: string;
-    children?: React.ReactNode;
-}
