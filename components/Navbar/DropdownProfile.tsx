@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from "@headlessui/react";
-import { IDropdownProfile } from '../type';
+import { IDropdownProfile } from '../../type';
 import { VscSignOut } from 'react-icons/vsc'
 
 

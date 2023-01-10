@@ -1,4 +1,4 @@
-import { INavigation } from "../type";
+import { INavigation } from "../../type";
 import { Disclosure, } from "@headlessui/react";
 import { FiMenu } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";

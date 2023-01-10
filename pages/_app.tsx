@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from "next/app"
-import Navbar from '../components/Navbar';
+import Navbar from '../components/Navbar/Navbar';
 import { ToastContainer } from 'react-toastify';
 import { useRouter } from 'next/router'
 

@@ -18,3 +18,9 @@ export interface IDropdownProfile {
     name: string;
     href: string;
 }
+
+
+export interface IProvider  {
+    providers: JSX.Element
+  
+  }

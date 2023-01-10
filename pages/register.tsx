@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import { FormRegister } from "../type";
 import axios from "axios";
 import Button from "../components/Button/Button";
+import Spinner from "../components/Spinner";
 
 export default function Register() {
 
@@ -38,20 +39,15 @@ export default function Register() {
                 },
             })
             .then(async () => {
-
                 toast.success('Success');
                 setTimeout(() => {
                     setIsLoading(false);
                     return (window.location.href = `${process.env.NEXT_PUBLIC_URL}`);
-
                 }, 3000)
             })
             .catch((error) => {
-                console.log(error.response);
-                setTimeout(() => {
-                    toast.error(error.response.data.error)
-                    setIsLoading(false);
-                }, 1000)
+                toast.error(error.response.data.error)
+                setIsLoading(false);
             });
     }
 
@@ -76,7 +72,7 @@ export default function Register() {
         <div className="flex w-full my-14">
             <div className="grid grid-cols-1 items-center gap-20 md:grid-cols-2 m-auto  sm:max-w-[950px]">
                 <div className="hidden md:block">
-                    <Image src={trees}  alt="/" />
+                    <Image src={trees} alt="/" />
                 </div>
                 <div className="flex flex-col justify-center gap-5 md:p-10 p-6 border rounded-sm shadow-custom">
                     <div className="flex flex-col text-center">
@@ -187,8 +183,11 @@ export default function Register() {
                             </span>
                         )}
                         <div className="mt-6">
-                        <Button variant="regular" size="regular">Masuk</Button>
+                            <Button isLoading={isLoading} variant="regular" size="regular">
+                                {isLoading ? <Spinner /> : "Masuk"}
+                            </Button>
                         </div>
+
                     </form>
                 </div>
             </div>
