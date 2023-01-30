@@ -3,17 +3,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from "next/app"
 import { ToastContainer } from 'react-toastify';
-// import { useRouter } from 'next/router'
-// import Header from '../components/Navbar/Header';
+import { useRouter } from 'next/router'
+import Header from '../components/Navbar/Index';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // const router = useRouter()
-  // const NavbarPage = () => {
-  //   if (router.pathname !== '/login' && router.pathname !== '/register') {
-  //     return <Header />
-  //   }
-  //   else null;
-  // }
+  const router = useRouter()
+  const NavbarPage = () => {
+    if (router.pathname !== '/login' && router.pathname !== '/register') {
+      return <Header />
+    }
+    else null;
+  }
   return (
     <SessionProvider session={pageProps.session}>
       <ToastContainer position="top-right"
@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         draggable
         pauseOnHover
         theme="light" />
-      {/* {NavbarPage()} */}
+      {NavbarPage()}
       <Component {...pageProps} />
     </SessionProvider>
   )
