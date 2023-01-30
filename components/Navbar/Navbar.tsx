@@ -100,13 +100,17 @@ const Navbar = () => {
                             ref={ref}
                             className=" px-5 py-5 sm:px-3"
                         >
-                            <ul className='space-y-5 text-sm'>
+                            <ul className='space-y-5 text-sm font-medium'>
                                 {NavMenu.map((nav, i) => (
                                     <li key={i}>
                                         <Link className='' href={nav.href}>{nav.name}</Link>
                                     </li>
                                 ))}
                                 <DropdownCategory />
+                                <div className="py-3 space-x-3">
+                                    <Button variant='outline' size='small' title="Masuk" />
+                                    <Button variant='regular' size='small' title="Daftar" />
+                                </div>
                             </ul>
                         </div>
                     </div>

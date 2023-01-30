@@ -17,7 +17,7 @@ const DropdownCategory = () => {
                 <Menu.Button className="inline-flex w-full items-center text-gray-700">
                     Catalog
                     <AiOutlineDown
-                        className="ml-2 -mr-1 h-4 w-4  text-gray-700"
+                        className="ml-2 -mr-1 md:h-4 md:w-4 w-3 h-3  text-gray-700"
                         aria-hidden="true"
                     />
                 </Menu.Button>
