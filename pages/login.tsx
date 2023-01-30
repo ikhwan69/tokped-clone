@@ -128,7 +128,7 @@ export default function Login({ providers }: IProvider) {
                         </span>
                     )}
                     <div className="mt-6">
-                        <Button isLoading={isLoading} fullWidth size='large' title="Masuk" />
+                        <Button isLoading={isLoading} fullWidth variant='regular' size='small' title="Masuk" />
                     </div>
                     <Divider word="Atau" />
                     <ProviderButton providers={providers} />

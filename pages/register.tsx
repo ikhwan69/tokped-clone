@@ -175,7 +175,7 @@ export default function Register() {
               </span>
             )}
             <div className="mt-6">
-              <Button isLoading={isLoading} variant='gradient' fullWidth size='large' title="Daftar" />
+              <Button isLoading={isLoading} fullWidth variant='regular' size='small' title="Daftar" />
             </div>
           </form>
         </div>

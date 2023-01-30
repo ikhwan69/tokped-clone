@@ -24,8 +24,8 @@ const Navbar = () => {
     return (
         <nav className='shadow-sm fixed w-full'>
             <div className="flex items-center h-16 md:h-20 font-medium justify-around">
-                <div className="z-50 p-5 md:w-32 w-full flex justify-between">
-                    <Image src="/assets/logo.png" alt='arwana' width={100} height={250} />
+                <div className="z-50 p-5 w-full flex justify-between">
+                    <Image src="/assets/logo.png" alt='arwana' width={90} height={250} />
                 </div>
                 <ul className="md:flex hidden items-center gap-8">
                     {NavMenu.map((nav, i) => (
