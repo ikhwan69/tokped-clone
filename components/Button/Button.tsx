@@ -1,40 +1,42 @@
 
-import { type ButtonHTMLAttributes, type ReactNode } from 'react'
+import { type ButtonHTMLAttributes } from 'react'
 import clsx from 'clsx'
+import Spinner from '../Spinner'
+import style from '../../styles/Button.module.css'
 
-type buttonVariant = "regular" | "outline" | "ghost" | "link"
+type buttonVariant = "regular" | "outline"
 type buttonSize = "regular" | "large" | "small"
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+  title?: string
   size?: buttonSize
   variant?: buttonVariant
-  children: ReactNode
+  fullWidth?: boolean
   isLoading?: boolean
 }
 
 const Button = ({
   size = "regular",
   variant = "regular",
-  children,
-  className,
+  title,
+  fullWidth,
   isLoading,
   ...props
 }: Props) => {
   return (
     <button
       className={clsx(
-        "font-medium w-full tracking-wide transition-colors duration-200 transform rounded-md hover:bg-blue-700",
-        className,
-        size === "large" && "px-5 py-3 text-base",
-        size === "regular" && "px-4 py-2 text-base",
-        size === "small" && "px-2 py-2",
-        variant === "regular" &&
-        " text-white hover:bg-blue-700 disabled:hover:bg-blue-500 bg-blue-500",
-        isLoading === true && "cursor-not-allowed"
+        `${style.button}`,
+        fullWidth ? 'w-full' : 'w-auto',
+        size === 'large' ? 'px-5 py-3' : size === 'regular' ? 'px-4 py-3' : size === 'small' && 'px-4 py-1.5',
+        variant === "regular" && `${style.button_reguler}`,
+        variant === 'outline' && `${style.button_outline}`,
+        isLoading && "cursor-not-allowed"
       )}
       {...props}
     >
-      {children}
+      {isLoading ? <Spinner /> : `${title}`}
+
     </button>
   )
 }

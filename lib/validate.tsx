@@ -1,4 +1,4 @@
-import { FormRegister } from '../type'
+import { FormRegister } from '../types/type'
 import {FormikErrors} from 'formik'
 
 export default function login_validate(values : any) {
