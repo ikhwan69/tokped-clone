@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 import LayoutPage from '../layout/layoutPage'
 import { useAppDispatch, useAppSelector } from '../redux/hooks'
-import { decrement, increment, incrementByAmount, selectCount } from '../redux/features/counterSlice'
+import { decrement, increment, incrementByAmount, selectCount } from '../redux/features/counter'
 import Button from '../components/Button/Button'
 
 const About: FC = () => {
@@ -11,7 +11,7 @@ const About: FC = () => {
     return (
         <LayoutPage>
             <h1 className="text-2xl text-center">Halaman About</h1>
-            <h2>The current number is {count}</h2>
+            <h2>Nomor sekarang {count}</h2>
             <div className=' flex gap-4 py-3'>
                 <input
                     value={incrementAmount}
