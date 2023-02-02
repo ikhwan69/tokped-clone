@@ -13,6 +13,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: buttonVariant
   fullWidth?: boolean
   isLoading?: boolean
+  onClick?: () => void
 }
 
 const Button = ({
@@ -21,10 +22,12 @@ const Button = ({
   title,
   fullWidth,
   isLoading,
+  onClick,
   ...props
 }: Props) => {
   return (
     <button
+      onClick={onClick}
       className={clsx(
         `${style.button}`,
         fullWidth ? 'w-full' : 'w-auto',

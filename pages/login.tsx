@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Head from "next/head"
 import Link from "next/link"
 import { AiFillEye, AiFillMail } from "react-icons/ai"
@@ -42,7 +42,7 @@ export default function Login({ providers }: IProvider) {
         onSubmit,
     })
 
-    async function onSubmit(values: any) {
+    async function onSubmit(values: FormLogin) {
         setIsLoading(true)
         const status: any = await signIn("credentials", {
             redirect: false,
@@ -57,7 +57,6 @@ export default function Login({ providers }: IProvider) {
                 setIsLoading(false)
             }, 2000)
         } else {
-            console.log(status)
             toast.error(status.error)
             setIsLoading(false)
         }

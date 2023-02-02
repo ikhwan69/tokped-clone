@@ -39,7 +39,7 @@ const HeroesSlider = () => {
         <div className="md:w-[1200px] w-[360px] mx-auto">
             <Slide {...zoomInProperties}>
                 {images.map((each, index) => (
-                    <div key={index} className="flex justify-center w-full h-full">
+                    <div key={index} className="flex justify-center w-auto h-auto">
                         <Image
                             quality={100}
                             width={1200}

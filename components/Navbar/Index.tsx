@@ -7,9 +7,6 @@ const Header = () => {
     return (
         <section>
             <Navbar />
-            <div className="md:py-36 py-24">
-                <HeroesSlider />
-            </div>
         </section>
     )
 }

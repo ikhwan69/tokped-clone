@@ -38,7 +38,7 @@ const DropdownCategory = () => {
                                 <Menu.Item >
                                     {({ active }) => (
                                         <button
-                                            className={`${active ? 'bg-red-500 text-white' : 'text-gray-900'
+                                            key={index} className={`${active ? 'bg-red-500 text-white' : 'text-gray-900'
                                                 } group flex w-full items-center rounded-md px-3 py-2 text-base`}
                                         >
                                             {item.name}

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import trees from "../public/assets/register_new.png"
+
 import Image from "next/image"
 import { AiFillEye, AiFillMail } from "react-icons/ai"
 import { FaUserAlt } from "react-icons/fa"
@@ -8,11 +8,9 @@ import Link from "next/link"
 import { useFormik } from "formik"
 import { registerValidate } from "../lib/validate"
 import { toast } from "react-toastify"
-
 import { FormRegister } from "../types/type"
 import axios from "axios"
 import Button from "../components/Button/Button"
-import Spinner from "../components/Spinner"
 
 export default function Register() {
   const [show, setShow] = useState({ password: false, cpassword: false })
@@ -71,7 +69,7 @@ export default function Register() {
     <div className="flex w-full my-14">
       <div className="m-auto grid grid-cols-1 items-center gap-20 sm:max-w-[950px]  md:grid-cols-2">
         <div className="hidden md:block">
-          <Image src={trees} alt="/" />
+          <Image src='/assets/bg-register-arwana.png' quality={100} width={720} height={200} alt="arwana" />
         </div>
         <div className="flex flex-col justify-center gap-5 p-6 border rounded-sm shadow-custom md:p-10">
           <div className="flex flex-col text-center">

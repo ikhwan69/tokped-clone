@@ -3,28 +3,30 @@ import Image from 'next/image'
 import Button from '../Button/Button'
 import DropdownCategory from './DropdownCategory'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { INavbar } from '../../types/type'
 import { SlBag } from 'react-icons/sl'
 import { Transition } from '@headlessui/react'
 import HeadNew from './Head'
+import { IconMenu, IconClose } from '../Icon'
 
 const NavMenu: INavbar[] = [
     { href: '/', name: 'Home' },
     { href: '/about', name: 'About Us' },
-    { href: '/gallery', name: 'Our Gallery' },
+    { href: '/galery', name: 'Our Gallery' },
     { href: '/blog', name: 'Blog' },
     { href: '/contact', name: 'Contact Us' }
 ]
 
 const Navbar = () => {
+    const router = useRouter()
     const [isOpen, setIsOpen] = useState<boolean>(false)
-
     return (
         <nav className='shadow-sm z-50 fixed w-full'>
             <HeadNew />
             <div className="flex bg-white items-center h-16 md:h-16 font-medium justify-around">
                 <div className=" md:w-auto w-full md:ml-0 ml-5 flex justify-between">
-                    <Image src="/assets/logo.png" alt='arwana' width={100} quality={100} height={70} />
+                    <Image src="/assets/logo.png" alt='arwana' width={100} height={60} quality={100} />
                 </div>
                 <ul className="md:flex hidden items-center gap-8">
                     {NavMenu.map((nav, i) => (
@@ -36,10 +38,11 @@ const Navbar = () => {
                 </ul>
                 <div className=" gap-2 hidden md:inline-flex items-center">
                     <SlBag className='w-6 h-6 text-red-500 cursor-pointer' />
-                    <Button variant='outline' size='small' title="Masuk" />
-                    <Button variant='regular' size='small' title="Daftar" />
+                    <Button onClick={() => router.push('/login')} variant='outline' size='small' title="Masuk" />
+                    <Button onClick={() => router.push('/register')} variant='regular' size='small' title="Daftar" />
                 </div>
 
+                {/* Mobile Menu */}
                 <div className="mr-5 flex md:hidden ">
                     <button
                         onClick={() => setIsOpen(!isOpen)}
@@ -50,42 +53,13 @@ const Navbar = () => {
                     >
                         <span className="sr-only">Open main menu</span>
                         {!isOpen ? (
-                            <svg
-                                className="block h-4 w-4"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                aria-hidden="true"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M4 6h16M4 12h16M4 18h16"
-                                />
-                            </svg>
+                            <IconMenu />
                         ) : (
-                            <svg
-                                className="block h-4 w-4"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                aria-hidden="true"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
-                            </svg>
+                            <IconClose />
                         )}
                     </button>
                 </div>
             </div>
-
             <Transition
                 show={isOpen}
                 enter="transition ease-out duration-300 transform"
@@ -101,16 +75,17 @@ const Navbar = () => {
                             ref={ref}
                             className=" px-5 py-5 sm:px-3"
                         >
-                            <ul className='space-y-5 text-sm font-medium'>
+                            <ul className='space-y-2 text-sm font-medium'>
                                 {NavMenu.map((nav, i) => (
-                                    <li key={i}>
-                                        <Link className='' href={nav.href}>{nav.name}</Link>
+                                    <li key={i} className="border-b border-gray-200 py-2">
+                                        <Link href={nav.href}>{nav.name}</Link>
                                     </li>
                                 ))}
+
                                 <DropdownCategory />
-                                <div className="py-3 space-x-3">
-                                    <Button variant='outline' size='small' title="Masuk" />
-                                    <Button variant='regular' size='small' title="Daftar" />
+                                <div className="py-6 space-x-3">
+                                    <Button onClick={() => router.push('/login')} variant='outline' size='small' title="Masuk" />
+                                    <Button onClick={() => router.push('/register')} variant='regular' size='small' title="Daftar" />
                                 </div>
                             </ul>
                         </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import { BsFillTelephoneFill, BsFillQuestionSquareFill } from 'react-icons/bs'
 import { IoMdMailUnread } from 'react-icons/io'
 import { SiHelpdesk } from 'react-icons/si'
+import { AiFillInstagram } from 'react-icons/ai'
 
 const HeadNew = () => {
     return (
@@ -10,9 +11,12 @@ const HeadNew = () => {
                 <div className='w-3/4'>
                     <div className='md:flex flex items-center md:gap-2 gap-1'>
                         <BsFillTelephoneFill className='w-4 h-4' />
-                        <p className='md:text-sm font-light'>+88012 3456 7894</p>
+                        <p className='md:text-sm '>+62 819-0878-9528</p>
                         <IoMdMailUnread className='w-4 h-4 ml-5' />
-                        <p className='md:text-sm font-light'>ahmadarwana@gmail.com</p>
+                        <p className='md:text-sm '>firliansyahmuhammad@gmail.com</p>
+                        <AiFillInstagram className='w-4 h-4 ml-5' />
+                        <p className='md:text-sm '>ahmadarwana21</p>
+
                     </div>
                 </div>
                 <div className='w-4/4'>

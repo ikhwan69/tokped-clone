@@ -13,6 +13,9 @@ export default function Home() {
       <Head>
         <title>Home Page</title>
       </Head>
+      <div className="md:py-36 py-24">
+        <HeroesSlider />
+      </div>
       <main className='relative h-[50vh] bg-[#ffffff]'>
         <h1 className='text-center text-3xl'> Isi Text </h1>
       </main>
